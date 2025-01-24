@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.4" author="PygubuDesigner 0.40">
+  <project>
+    <settings>
+      <setting id="name">mctoast</setting>
+      <setting id="description"> </setting>
+      <setting id="module_name">mctoast</setting>
+      <setting id="template">codescript</setting>
+      <setting id="main_widget">root</setting>
+      <setting id="main_classname">ToastWindow</setting>
+      <setting id="main_menu" />
+      <setting id="output_dir" />
+      <setting id="output_dir2" />
+      <setting id="import_tkvariables">False</setting>
+      <setting id="use_ttk_styledefinition_file">False</setting>
+      <setting id="use_i18n">False</setting>
+      <setting id="all_ids_attributes">False</setting>
+      <setting id="generate_code_onsave">False</setting>
+      <setting id="use_window_centering_code">False</setting>
+      <setting id="ttk_style_definition_file" />
+    </settings>
+    <customwidgets />
+  </project>
+  <object class="tk.Tk" id="root" named="True">
+    <property name="background">#000000</property>
+    <property name="borderwidth">0</property>
+    <property name="geometry">320x64</property>
+    <property name="height">200</property>
+    <property name="overrideredirect">true</property>
+    <property name="resizable">none</property>
+    <property name="takefocus">false</property>
+    <property name="width">200</property>
+    <child>
+      <object class="tk.Label" id="background" named="True">
+        <property name="background">#000000</property>
+        <property name="image">advancement.png</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="height">64</property>
+          <property name="width">320</property>
+          <property name="x">0</property>
+          <property name="y">0</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+</interface>
