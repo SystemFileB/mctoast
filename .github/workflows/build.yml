@@ -1,0 +1,36 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main  # 假设您的主分支是 main
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 检查代码
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        apt-get update
+        apt-get install -y python-full
+        python -m pip install --upgrade pip
+        pip install setuptools wheel pillow
+
+    - name: Build wheel package
+      run: |
+        python setup.py bdist_wheel
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: mctoast-snapshot
+        path: dist/*.whl
