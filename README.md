@@ -3,10 +3,11 @@
 目前被[CamMoitor](https://github.com/SystemFileB/CamMonitor_Server)使用
 
 ## 📦安装
+```shell
+$ pip install mctoast pillow //现在我还没有上传pypi，你可以试试手动构建，或出门右转github action
+$ pip install mctoast-1.0-py3-none-any.whl pillow //现在先用这个
 ```
-$ pip install mctoast //现在我还没有上传pypi，你可以试试手动构建，或出门右转github action
-$ pip install mctoast-1.0-py3-none-any.whl //现在先用这个
-```
+我现在还不知道怎么实现自动安装pillow作为依赖😅，你只能手动装了 ()
 
 ## 🖼️画廊
 原版效果:  
