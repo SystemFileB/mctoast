@@ -1,4 +1,4 @@
-name: Build and Release
+name: Snapshot Build / 快照构建
 
 on:
   push:
@@ -13,23 +13,21 @@ jobs:
     - name: 检查代码
       uses: actions/checkout@v4
 
-    - name: Set up Python
+    - name: 设置 Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.x'
 
-    - name: Install dependencies
+    - name: 安装依赖
       run: |
-        apt-get update
-        apt-get install -y python-full
         python -m pip install --upgrade pip
         pip install setuptools wheel pillow
 
-    - name: Build wheel package
+    - name: 构建
       run: |
         python setup.py bdist_wheel
 
-    - name: Upload Artifacts
+    - name: 上传 Artifact
       uses: actions/upload-artifact@v4
       with:
         name: mctoast-snapshot
