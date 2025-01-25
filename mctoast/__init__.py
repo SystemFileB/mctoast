@@ -62,26 +62,9 @@ class ToastWindowUI:
         self.root.attributes("-topmost", "true")
         self.root.attributes("-transparentcolor", "#EEEEEE")
         self.set_no_focus()
-        self.set_no_focus()
         self.root.resizable(False, False)
         self.canvas = tk.Canvas(self.root, width=320, height=320, bg="#EEEEEE", highlightthickness=0)
         self.canvas.place(x=0,y=0)
-    
-    def set_no_focus(self):
-        """设置窗口为无焦点窗口并穿透鼠标点击"""
-        import ctypes
-        if os.name == 'nt':  # Windows
-            GWL_EXSTYLE = -20
-            WS_EX_NOACTIVATE = 0x08000000
-            WS_EX_TRANSPARENT = 0x00000020
-            WS_EX_LAYERED = 0x00080000
-            hwnd = ctypes.windll.user32.GetParent(self.root.winfo_id())
-            style = ctypes.windll.user32.GetWindowLongW(hwnd, GWL_EXSTYLE)
-            style = style | WS_EX_NOACTIVATE | WS_EX_TRANSPARENT | WS_EX_LAYERED
-            ctypes.windll.user32.SetWindowLongW(hwnd, GWL_EXSTYLE, style)
-            ctypes.windll.user32.SetLayeredWindowAttributes(hwnd, 0, 255, 0x00000002)
-        elif os.name == 'posix':  # Linux
-            self.root.wm_attributes('-type', 'splash')
     
     def main(self):
         tk.mainloop()

@@ -4,5 +4,10 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"marscode.codeCompletionPro": {
+			"enableCodeCompletionPro": true
+		},
+		"marscode.enableInlineCommand": true
+	}
 }

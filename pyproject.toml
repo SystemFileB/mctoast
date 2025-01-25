@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mctoast"
+version = "1.00"
+authors = [
+  { name="SystemFileB"},
+]
+description = "把Minecraft的Toast带到现实！"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: LGPLv3",
+]
+
+[project.urls]
+Homepage = "https://github.com/SystemFileB/mctoast"
+Documentation = "https://github.com/SystemFileB/mctoast"
+Bug Tracker = "https://github.com/SystemFileB/mctoast/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pillow"
+]
