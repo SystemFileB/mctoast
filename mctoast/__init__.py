@@ -12,8 +12,8 @@ CC-BY-NC-4.0: https://creativecommons.org/licenses/by-nc/4.0/legalcode
 import tkinter as tk
 import os
 import time
+from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont, ImageTk
-import _thread as thread
 from threading import Thread,Event
 path=os.path.dirname(__file__)
 pathjoin=os.path.join
@@ -26,8 +26,9 @@ SYSTEM = pathjoin(path, "assets","mctoast","textures","system.png")
 RETURN_PHOTOIMAGE=0
 RETURN_IMAGE=1
 RETURN_BYTE=2
+RETURN_SAVETOFILE=3
 
-def generate_image(toast:str, image_path:str, text1:str, color1:str, text2:str, color2:str, return_mode=RETURN_IMAGE):
+def generate_image(toast=ADVANCEMENT, image_path:str=None, text1="进度已达成！", color1="yellow", text2="MCToast示例", color2="white", return_mode=RETURN_IMAGE, resize:bool=False, filename:str=None):
     """生成Toast图片
     toast:str           背景图片(ADVANCEMENT,RECIPE,SYSTEM)
     image_path:str      图片路径(对应原版的物品位置)
@@ -35,7 +36,8 @@ def generate_image(toast:str, image_path:str, text1:str, color1:str, text2:str, 
     color1:str          第一行文本颜色
     text2:str           第二行文本
     color2:str          第二行文本颜色
-    return_mode:int     返回模式(RETURN_IMAGE,RETURN_PHOTOIMAGE,RETURN_BYTE)
+    return_mode:int     返回模式(RETURN_IMAGE,RETURN_PHOTOIMAGE,RETURN_BYTE,RETURN_SAVETOFILE)
+    filename:str        在return_mode=RETURN_SAVETOFILE时作为保存路径，未指定就报错
     """
     # 打开背景图片并缩放
     background_image = Image.open(toast)
@@ -67,14 +69,23 @@ def generate_image(toast:str, image_path:str, text1:str, color1:str, text2:str, 
             draw.text((120, 26), text1, fill=color1, font=font)
         if text2 and color2:
             draw.text((120, 70), text2, fill=color2, font=font)
-    
+    if resize:
+        background_image = background_image.resize((320, 64),Image.Resampling.NEAREST)
     # 将 Pillow 图片转换为 PhotoImage
     if return_mode==RETURN_IMAGE:
-        return background_image.resize((320, 64),Image.Resampling.NEAREST)
+        return background_image
     elif return_mode==RETURN_BYTE:
-        return background_image.resize((320, 64),Image.Resampling.NEAREST).tobytes()
+        bytes=BytesIO()
+        background_image.save(bytes,format="PNG")
+        return bytes.getvalue()
+    elif return_mode==RETURN_SAVETOFILE:
+        if filename:
+            background_image.save(filename)
+        else:
+            raise ValueError("未指定图片路径")
+
     else:
-        return ImageTk.PhotoImage(background_image.resize((320, 64),Image.Resampling.NEAREST))
+        return ImageTk.PhotoImage(background_image)
 
 class ToastWindowUI:
     """Toast界面类"""
@@ -108,7 +119,7 @@ class ToastWindowUI:
             for i in range(5):
                 if toasts[i] == None:
                     # 使用 Pillow 生成图片
-                    photo=generate_image(toast, image_path, text1, color1, text2, color2, RETURN_PHOTOIMAGE)
+                    photo=generate_image(toast, image_path, text1, color1, text2, color2, RETURN_PHOTOIMAGE, True)
                     self.root.deiconify()
                     toasts[i] = self.canvas.create_image(320, i*64, anchor="nw", image=photo)
                     event.set()
@@ -163,17 +174,20 @@ class ToastWindowUI:
             self.root.wm_attributes('-type', 'splash')
 
 window=None
-def _init():
+def _init(e:Event=None):
     """别调用"""
     global window
     window=ToastWindowUI()
+    if e:
+        e.set()
     window.main()
 
 def init():
     """初始化窗口"""
-    thread.start_new_thread(_init,())
-    while type(window)!=ToastWindowUI:
-        pass
+    e=Event()
+    t=Thread(target=_init,args=(e))
+    t.start()
+    e.wait()
 
 def new_toast(toast=ADVANCEMENT, image_path:str=None, text1="一个弹窗", color1="yellow", text2="MCToast示例", color2="white"):
     """新弹窗
