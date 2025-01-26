@@ -6,7 +6,7 @@
 ```shell
 # 从PyPI上安装
 $ pip install mctoast
-# 安装快照
+# 安装快照 (请将后面的路径换为实际的)
 $ pip install /path/to/mctoast-wheel.whl
 ```
 
@@ -27,6 +27,9 @@ mctoast模仿的效果:
 - 若遇到了相关的许可证问题，请第一时间[提交issue](https://github.com/SystemFileB/mctoast/issues)并加上 版权或许可证问题 标签
 
 ## 更新日志
+### 1.11
+- 允许你直接运行mctoast，而非python -m mctoast
+
 ### 1.10.2
 - 因为PyPI无法上传同一个版本的库，我又更改了这个库的README，所以我改了版本号
 
