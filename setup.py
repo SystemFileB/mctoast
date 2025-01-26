@@ -12,7 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="SystemFileB",
-    packages=setuptools.find_packages(where=".",include=['*']),
+    packages=setuptools.find_namespace_packages(where=".",include=['mctoast.*']),
     package_data={
         'mctoast': ['*'],  # 包含mctoast目录下的所有文件
     },
