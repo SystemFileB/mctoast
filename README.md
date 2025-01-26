@@ -26,7 +26,10 @@ mctoast模仿的效果:
 - 字体使用了GNU Unifont，基于[GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)许可证
 - 若遇到了相关的许可证问题，请第一时间[提交issue](https://github.com/SystemFileB/mctoast/issues)并加上 版权或许可证问题 标签
 
-## 更新日志
+## 📰更新日志
+### 1.11.1
+- 撤回1.11的更改
+
 ### 1.11
 - 允许你直接运行mctoast，而非python -m mctoast
 

@@ -3,7 +3,6 @@ help="""
 生成一个MCToast图片或者弹出一个Toast
 用法：
     python -m mctoast <参数> [保存路径]
-    mctoast <参数> [保存路径]
 
 参数：
     --toast=<弹窗类型>,-t=<弹窗类型>  指定弹窗类型<0,1,2>
@@ -28,11 +27,11 @@ help="""
     十分的直观 (
 
 示例：
-    mctoast -t=0 -i=1.png -t1=进度已达成！ -c1=yellow -t2=MCToast -c2=white
+    python -m mctoast -t=0 -i=1.png -t1=进度已达成！ -c1=yellow -t2=MCToast -c2=white
 
-    mctoast -t=2 -t1=提示 "-t2=想不到吧 我有空格"
+    python -m mctoast -t=2 -t1=提示 "-t2=想不到吧 我有空格"
 
-    mctoast -t=0 -i=1.png -t1=进度已达成！ -c1=yellow "-t2=我好像被保存了. . ." -c2=white test.png
+    python -m mctoast -t=0 -i=1.png -t1=进度已达成！ -c1=yellow "-t2=我好像被保存了. . ." -c2=white test.png
 
 本mctoast具有超级牛力
 """
@@ -68,49 +67,44 @@ moo="""
 
 Rickrolled LOL
 """
-def main():
-    global help,moo
-    print("MCToast 生成器 1.11\n")
-    toasts=(mctoast.ADVANCEMENT,mctoast.RECIPE,mctoast.SYSTEM)
-    toast=mctoast.ADVANCEMENT
-    image=None
-    text1="进度已达成！"
-    color1="yellow"
-    text2="MCToast示例"
-    color2="white"
-    savepath=None
-    if len(sys.argv)>1:
-        argv=sys.argv[1:]
-        for arg in argv:
-            if arg.startswith("--toast=") or arg.startswith("-t="):
-                toast=arg.split("=")[1]
-            elif arg.startswith("--image=") or arg.startswith("-i="):
-                image=arg.split("=")[1]
-            elif arg.startswith("--title=") or arg.startswith("-t1="):
-                text1=arg.split("=")[1]
-            elif arg.startswith("--title-color=") or arg.startswith("-c1="):
-                color1=arg.split("=")[1]
-            elif arg.startswith("--text=") or arg.startswith("-t2="):
-                text2=arg.split("=")[1]
-            elif arg.startswith("--text-color=") or arg.startswith("-c2="):
-                color2=arg.split("=")[1]
-            elif arg.startswith("--help") or arg.startswith("-h") or arg.startswith("-?"):
-                print(help)
-                exit(0)
-            elif arg=="--moo":
-                print(moo)
-                exit(0)
-            else:
-                savepath=arg
-    else:
-        print("WARNING: 未指定参数，将弹出默认Toast，请使用 --help 查看帮助")
-    if savepath==None:
-        mctoast.init()
-        mctoast.new_toast()
-        mctoast.wait_no_toast()
-    else:
-        mctoast.generate_image(toast,image,text1,color1,text2,color2,mctoast.RETURN_SAVETOFILE, False, savepath)
-        print("已保存:",savepath)
-
-if __name__=="__main__":
-    main()
+print("MCToast 生成器 1.11.1\n")
+toasts=(mctoast.ADVANCEMENT,mctoast.RECIPE,mctoast.SYSTEM)
+toast=mctoast.ADVANCEMENT
+image=None
+text1="进度已达成！"
+color1="yellow"
+text2="MCToast示例"
+color2="white"
+savepath=None
+if len(sys.argv)>1:
+    argv=sys.argv[1:]
+    for arg in argv:
+        if arg.startswith("--toast=") or arg.startswith("-t="):
+            toast=arg.split("=")[1]
+        elif arg.startswith("--image=") or arg.startswith("-i="):
+            image=arg.split("=")[1]
+        elif arg.startswith("--title=") or arg.startswith("-t1="):
+            text1=arg.split("=")[1]
+        elif arg.startswith("--title-color=") or arg.startswith("-c1="):
+            color1=arg.split("=")[1]
+        elif arg.startswith("--text=") or arg.startswith("-t2="):
+            text2=arg.split("=")[1]
+        elif arg.startswith("--text-color=") or arg.startswith("-c2="):
+            color2=arg.split("=")[1]
+        elif arg.startswith("--help") or arg.startswith("-h") or arg.startswith("-?"):
+            print(help)
+            exit(0)
+        elif arg=="--moo":
+            print(moo)
+            exit(0)
+        else:
+            savepath=arg
+else:
+    print("WARNING: 未指定参数，将弹出默认Toast，请使用 --help 查看帮助")
+if savepath==None:
+    mctoast.init()
+    mctoast.new_toast()
+    mctoast.wait_no_toast()
+else:
+    mctoast.generate_image(toast,image,text1,color1,text2,color2,mctoast.RETURN_SAVETOFILE, False, savepath)
+    print("已保存:",savepath)

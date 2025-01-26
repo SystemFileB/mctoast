@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setuptools.setup(
     name="mctoast",
-    version="1.11",
+    version="1.11.1",
     description="把Minecraft的Toast带到现实里！",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -26,10 +26,5 @@ setuptools.setup(
     fullname="Minecraft Toast (tkinter)",
     url="https://github.com/SystemFileB/mctoast",
     include_package_data=True,
-    entry_points={
-        "console_scripts": [
-            "mctoast=mctoast.__main__:main", 
-        ]
-    }
     
 )
