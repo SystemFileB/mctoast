@@ -25,6 +25,8 @@ mctoast模仿的效果:
 - 若遇到了相关的许可证问题，请第一时间[提交issue](https://github.com/SystemFileB/mctoast/issues)并加上 版权或许可证问题 标签
 
 ## 更新日志
+### 1.10.1
+- 紧急修复：mctoast.init()报错
 
 ### 1.10
 - 库的修改
