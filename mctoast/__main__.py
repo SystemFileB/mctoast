@@ -2,7 +2,7 @@ import mctoast,sys
 help="""
 生成一个MCToast图片或者弹出一个Toast
 用法：
-    mctoast -m <参数> [保存路径]
+    python -m mctoast <参数> [保存路径]
 
 参数：
     --toast=<弹窗类型>,-t=<弹窗类型>  指定弹窗类型<0,1,2>
@@ -67,7 +67,7 @@ moo="""
 
 Rickrolled LOL
 """
-print("MCToast 生成器 1.10\n")
+print("MCToast 生成器 1.10.1\n")
 toasts=(mctoast.ADVANCEMENT,mctoast.RECIPE,mctoast.SYSTEM)
 toast=mctoast.ADVANCEMENT
 image=None
@@ -104,6 +104,7 @@ else:
 if savepath==None:
     mctoast.init()
     mctoast.new_toast()
+    mctoast.wait_no_toast()
 else:
     mctoast.generate_image(toast,image,text1,color1,text2,color2,mctoast.RETURN_SAVETOFILE, False, savepath)
     print("已保存:",savepath)

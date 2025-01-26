@@ -15,6 +15,7 @@ import time
 from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont, ImageTk
 from threading import Thread,Event
+import _thread
 path=os.path.dirname(__file__)
 pathjoin=os.path.join
 toasts=[None,None,None,None,None]
@@ -174,20 +175,17 @@ class ToastWindowUI:
             self.root.wm_attributes('-type', 'splash')
 
 window=None
-def _init(e:Event=None):
+def _init():
     """别调用"""
     global window
     window=ToastWindowUI()
-    if e:
-        e.set()
     window.main()
 
 def init():
     """初始化窗口"""
-    e=Event()
-    t=Thread(target=_init,args=(e))
-    t.start()
-    e.wait()
+    _thread.start_new_thread(_init,())
+    while window==None:
+        time.sleep(0.01)
 
 def new_toast(toast=ADVANCEMENT, image_path:str=None, text1="一个弹窗", color1="yellow", text2="MCToast示例", color2="white"):
     """新弹窗
