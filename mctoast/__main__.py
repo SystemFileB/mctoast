@@ -67,44 +67,54 @@ moo="""
 
 Rickrolled LOL
 """
-print("MCToast 生成器 1.11.1\n")
-toasts=(mctoast.ADVANCEMENT,mctoast.RECIPE,mctoast.SYSTEM)
-toast=mctoast.ADVANCEMENT
-image=None
-text1="进度已达成！"
-color1="yellow"
-text2="MCToast示例"
-color2="white"
-savepath=None
-if len(sys.argv)>1:
-    argv=sys.argv[1:]
-    for arg in argv:
-        if arg.startswith("--toast=") or arg.startswith("-t="):
-            toast=arg.split("=")[1]
-        elif arg.startswith("--image=") or arg.startswith("-i="):
-            image=arg.split("=")[1]
-        elif arg.startswith("--title=") or arg.startswith("-t1="):
-            text1=arg.split("=")[1]
-        elif arg.startswith("--title-color=") or arg.startswith("-c1="):
-            color1=arg.split("=")[1]
-        elif arg.startswith("--text=") or arg.startswith("-t2="):
-            text2=arg.split("=")[1]
-        elif arg.startswith("--text-color=") or arg.startswith("-c2="):
-            color2=arg.split("=")[1]
-        elif arg.startswith("--help") or arg.startswith("-h") or arg.startswith("-?"):
-            print(help)
-            exit(0)
-        elif arg=="--moo":
-            print(moo)
-            exit(0)
-        else:
-            savepath=arg
-else:
-    print("WARNING: 未指定参数，将弹出默认Toast，请使用 --help 查看帮助")
-if savepath==None:
-    mctoast.init()
-    mctoast.new_toast()
-    mctoast.wait_no_toast()
-else:
-    mctoast.generate_image(toast,image,text1,color1,text2,color2,mctoast.RETURN_SAVETOFILE, False, savepath)
-    print("已保存:",savepath)
+def mian():
+    global help,moo
+    print("MCToast 生成器 1.12\n")
+    toasts=(mctoast.ADVANCEMENT,mctoast.RECIPE,mctoast.SYSTEM)
+    toast=mctoast.ADVANCEMENT
+    image=None
+    text1="进度已达成！"
+    color1="yellow"
+    text2="MCToast示例"
+    color2="white"
+    savepath=None
+    if len(sys.argv)>1:
+        argv=sys.argv[1:]
+        for arg in argv:
+            if arg.startswith("--toast=") or arg.startswith("-t="):
+                try:
+                    toast=toasts[int(arg.split("=")[1])]
+                except ValueError:
+                    print("ERROR: 无效的Toast类型")
+                    exit(1)
+                print(toast)
+            elif arg.startswith("--image=") or arg.startswith("-i="):
+                image=arg.split("=")[1]
+            elif arg.startswith("--title=") or arg.startswith("-t1="):
+                text1=arg.split("=")[1]
+            elif arg.startswith("--title-color=") or arg.startswith("-c1="):
+                color1=arg.split("=")[1]
+            elif arg.startswith("--text=") or arg.startswith("-t2="):
+                text2=arg.split("=")[1]
+            elif arg.startswith("--text-color=") or arg.startswith("-c2="):
+                color2=arg.split("=")[1]
+            elif arg.startswith("--help") or arg.startswith("-h") or arg.startswith("-?"):
+                print(help)
+                exit(0)
+            elif arg=="--moo":
+                print(moo)
+                exit(0)
+            else:
+                savepath=arg
+    else:
+        print("WARNING: 未指定参数，将弹出默认Toast，请使用 --help 查看帮助")
+    if savepath==None:
+        mctoast.init()
+        mctoast.new_toast(toast,image,text1,color1,text2,color2)
+        mctoast.wait_no_toast()
+    else:
+        mctoast.generate_image(toast,image,text1,color1,text2,color2,mctoast.RETURN_SAVETOFILE, False, savepath)
+        print("已保存:",savepath)
+
+if __name__=="__main__":
+    mian()

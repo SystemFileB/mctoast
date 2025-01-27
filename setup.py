@@ -1,18 +1,16 @@
 import setuptools
-print("MCToast Setup.py By SystemFileB")
-print()
 with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
     f.close()
 
 setuptools.setup(
     name="mctoast",
-    version="1.11.1",
+    version="1.12",
     description="把Minecraft的Toast带到现实里！",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="SystemFileB",
-    packages=setuptools.find_namespace_packages(where=".",include=['mctoast.*']),
+    packages=setuptools.find_namespace_packages(include=["mctoast","mctoast.*"]),
     package_data={
         'mctoast': ['*'],  # 包含mctoast目录下的所有文件
     },
@@ -26,5 +24,13 @@ setuptools.setup(
     fullname="Minecraft Toast (tkinter)",
     url="https://github.com/SystemFileB/mctoast",
     include_package_data=True,
+    entry_points={
+        'console_scripts': [
+            'mctoast = mctoast.__main__:mian'
+        ], 
+        'gui_scripts': [
+            'mctoastw = mctoast.__main__:mian'
+        ],
+    }
     
 )

@@ -8,6 +8,8 @@
 $ pip install mctoast
 # 安装快照 (请将后面的路径换为实际的)
 $ pip install /path/to/mctoast-wheel.whl
+# 从github仓库安装 (有时候未经测试，也有可能无法运行)
+$ pip install git+https://github.com/SystemFileB/mctoast.git@main
 ```
 
 ## 🖼️画廊
@@ -27,8 +29,13 @@ mctoast模仿的效果:
 - 若遇到了相关的许可证问题，请第一时间[提交issue](https://github.com/SystemFileB/mctoast/issues)并加上 版权或许可证问题 标签
 
 ## 📰更新日志
+### 1.12
+- 紧急修复：setup.py并没有包含`__init__.py`和`__main__.py`文件，导致无法使用
+- 重新加入1.11的更改
+- 修复：python -m mctoast无法弹出参数自定义的toast
+
 ### 1.11.1
-- 撤回1.11的更改
+- 紧急修复：撤回1.11的更改
 
 ### 1.11
 - 允许你直接运行mctoast，而非python -m mctoast
@@ -40,11 +47,11 @@ mctoast模仿的效果:
 - 紧急修复：mctoast.init()报错
 
 ### 1.10
-- 库的修改
-&nbsp;&nbsp;&nbsp;&nbsp;- 为`generate_image`添加了默认值
-&nbsp;&nbsp;&nbsp;&nbsp;- `generate_image(return_mode=RETURN_BYTE)`修复，现在返回的就是正常的图片字节
-&nbsp;&nbsp;&nbsp;&nbsp;- 加入`generate_image(return_mode=RETURN_SAVETIFILE,filename="awasome.png")`语法，可以将图片保存为文件了
-&nbsp;&nbsp;&nbsp;&nbsp;- 加入`generate_image(resize=False)`，在new_toast里使用的时候这个值为`True`，你一般不用修改，除非你也要把它缩放到320x64
+- 库的修改  
+    - 为`generate_image`添加了默认值 
+    - `generate_image(return_mode=RETURN_BYTE)`修复，现在返回的就是正常的图片字节  
+    - 加入`generate_image(return_mode=RETURN_SAVETIFILE,filename="awasome.png")`语法，可以将图片保存为文件了  
+    - 加入`generate_image(resize=False)`，在new_toast里使用的时候这个值为`True`，你一般不用修改，除非你也要把它缩放到320x64  
 - 允许你使用`python -m mctoast`生成toast图片或弹出toast
 - <p style="color:gray">据说执行 python -m mctoast --moo 有彩蛋，你要不要试试</p>
 - 移除了Herobrine (
