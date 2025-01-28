@@ -70,7 +70,7 @@ Rickrolled LOL
 """
 def mian():
     global help,moo
-    print("MCToast 生成器 1.13\n")
+    print("MCToast 生成器 {}\n".format(mctoast.__version__))
     toasts=(mctoast.ADVANCEMENT,mctoast.RECIPE,mctoast.SYSTEM)
     toast=mctoast.ADVANCEMENT
     image=None

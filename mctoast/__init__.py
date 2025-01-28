@@ -20,6 +20,12 @@ path=os.path.dirname(__file__)
 pathjoin=os.path.join
 toasts=[None,None,None,None,None]
 
+__package__ = "mctoast"
+__version__ = "1.20.1"
+__author__ = "SystemFileB"
+__description__ = "把Minecraft的Toast带到现实里！"
+__license__ = "GNU Lesser General Public License v3 (LGPLv3)"
+
 # 定义常量
 ADVANCEMENT = pathjoin(path, "assets","mctoast","textures","advancement.png")
 RECIPE = pathjoin(path, "assets","mctoast","textures","recipe.png")
