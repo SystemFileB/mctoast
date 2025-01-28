@@ -29,10 +29,10 @@ RETURN_IMAGE=1
 RETURN_BYTE=2
 RETURN_SAVETOFILE=3
 
-def generate_image(toast=ADVANCEMENT, image_path:str=None, text1="进度已达成！", color1="yellow", text2="MCToast示例", color2="white", return_mode=RETURN_IMAGE, resize:bool=False, filename:str=None):
+def generate_image(toast=ADVANCEMENT, image_path=None, text1="进度已达成！", color1="yellow", text2="MCToast示例", color2="white", return_mode=RETURN_IMAGE, resize:bool=False, filename:str=None):
     """生成Toast图片
     toast:str           背景图片(ADVANCEMENT,RECIPE,SYSTEM)
-    image_path:str      图片路径(对应原版的物品位置)
+    image_path:str      图片路径(对应原版的物品位置)，你也可以试试BytesIO
     text1:str           第一行文本
     color1:str          第一行文本颜色
     text2:str           第二行文本
@@ -187,10 +187,10 @@ def init():
     while window==None:
         time.sleep(0.01)
 
-def new_toast(toast=ADVANCEMENT, image_path:str=None, text1="一个弹窗", color1="yellow", text2="MCToast示例", color2="white"):
+def new_toast(toast=ADVANCEMENT, image_path=None, text1="一个弹窗", color1="yellow", text2="MCToast示例", color2="white"):
     """新弹窗
     toast:str           背景图片(ADVANCEMENT,RECIPE,SYSTEM)
-    image_path:str      图片路径(对应原版的物品位置)
+    image_path:str      图片路径(对应原版的物品位置)，你也可以试试BytesIO
     text1:str           第一行文本
     color1:str          第一行文本颜色
     text2:str           第二行文本

@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setuptools.setup(
     name="mctoast",
-    version="1.12",
+    version="1.20",
     description="把Minecraft的Toast带到现实里！",
     long_description=long_description,
     long_description_content_type="text/markdown",

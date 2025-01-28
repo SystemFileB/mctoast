@@ -1,4 +1,5 @@
-import mctoast,sys
+import mctoast
+import sys
 help="""
 生成一个MCToast图片或者弹出一个Toast
 用法：
@@ -69,7 +70,7 @@ Rickrolled LOL
 """
 def mian():
     global help,moo
-    print("MCToast 生成器 1.12\n")
+    print("MCToast 生成器 1.13\n")
     toasts=(mctoast.ADVANCEMENT,mctoast.RECIPE,mctoast.SYSTEM)
     toast=mctoast.ADVANCEMENT
     image=None
@@ -89,7 +90,18 @@ def mian():
                     exit(1)
                 print(toast)
             elif arg.startswith("--image=") or arg.startswith("-i="):
-                image=arg.split("=")[1]
+                if arg.split("=")[1].startswith("http"):
+                    try:
+                        from requests import get
+                        import io
+                    except ImportError:
+                        print("ERROR: 未安装requests库，无法执行这个操作")
+                        exit(1)
+                    req=get(arg.split("=")[1])
+                    image=io.BytesIO(req.content)
+
+                else:
+                    image=arg.split("=")[1]
             elif arg.startswith("--title=") or arg.startswith("-t1="):
                 text1=arg.split("=")[1]
             elif arg.startswith("--title-color=") or arg.startswith("-c1="):
