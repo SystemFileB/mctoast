@@ -33,6 +33,9 @@ mctoast模仿的效果:
 - 若遇到了相关的许可证问题，请第一时间[提交issue](https://github.com/SystemFileB/mctoast/issues)并加上 版权或许可证问题 标签
 
 ## 📰更新日志
+### 1.20.2
+- 修改CLI彩蛋
+
 ### 1.20.1
 - 紧急修复：CLI工具的版本号不对
 - 把版本号定义加在了`__init__.py`里

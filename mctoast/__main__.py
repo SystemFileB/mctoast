@@ -34,7 +34,7 @@ help="""
 
     python -m mctoast -t=0 -i=1.png -t1=进度已达成！ -c1=yellow "-t2=我好像被保存了. . ." -c2=white test.png
 
-本mctoast具有超级牛力
+本mctoast具有超级 --牛 力
 """
 moo="""
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
